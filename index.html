@@ -130,11 +130,11 @@
         }
 
         .avatar {
-            width: 100px;
-            height: 100px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             overflow: hidden;
-            border: 2px solid #fff;
+            border: 1px solid #6463638a;
             margin-bottom: 20px;
         }
 
@@ -199,10 +199,10 @@
         }
 
         .blog-post img {
-            width: 200px;
+            width: 250px;
             height: auto;
             margin-right: 20px;
-            border-radius: 5px;
+            border-radius: 2px;
             object-fit: cover;
             flex-shrink: 0;
         }
@@ -287,44 +287,58 @@
                     <div class="avatar">
                         <img src="images/me.png" alt="Avatar">
                     </div>
-                    <div class="about-intro">John Doe</div>
+                    <div class="about-intro">Behzad Aminian</div>
                     <div class="about-tagline">
-                        Web Developer & Designer<br>
-                        Crafting clean, user-friendly digital experiences.
+                        Machine Learning Engineer and MLOps<br>
+                        I make things work sometimes.
                     </div>
 
                     <div class="contact-links">
                         <strong>Contact:</strong>
-                        <a href="#" target="_blank">LinkedIn</a>
-                        <a href="#" target="_blank">Twitter</a>
-                        <a href="#" target="_blank">GitHub</a>
-                        <a href="mailto:example@example.com" target="_blank">Email</a>
+                        <a href="https://www.linkedin.com/in/behzad-aminian/" target="_blank">LinkedIn</a>
+                        <a href="https://github.com/Behzad-amn" target="_blank">GitHub</a>
+                        <a href="mailto:aminian.bz@gmail.com" target="_blank">Email</a>
                     </div>
 
                     <div class="resume-link">
                         <strong>Resume:</strong>
-                        <a href="#" target="_blank">Download Resume</a>
+                        <a href="files/CV.pdf" target="_blank">Download Resume</a>
                     </div>
                 </div>
 
                 <div class="content-section" id="blog">
-                    <h2 class="section-heading">Blog</h2>
+                    
 
                     <div class="blog-post">
-                        <img src="images/pic01.jpg" alt="Blog Post Cover 1">
+                        <img src="images/diifmodel.jpg" alt="Blog Post Cover 1">
                         <div class="blog-post-content">
-                            <h3>First Post Title</h3>
+                            <h3>The Physics Behind Advanced Generative AI</h3>
                             <div class="blog-date">Posted on: 2023-01-15</div>
                             <p class="blog-text">
-                                This is a longer piece of text for the first blog post. Lorem ipsum dolor sit amet,
-                                consectetur
-                                adipiscing elit. Morbi vel dignissim risus, ut auctor justo. Duis vehicula malesuada
-                                nisi,
-                                nec gravida ex eleifend et. Sed eget tristique metus. Phasellus nec sapien lectus. Proin
-                                scelerisque urna vel feugiat mollis. Integer vehicula viverra lectus, a accumsan est
-                                finibus non.
-                                Nulla facilisi. Aliquam nec sollicitudin justo. Integer vulputate urna at congue
-                                sagittis...
+                                Last week, OpenAI released Sora. It’s still evolving, but it inspired me to share how models like DALL·E, Midjourney,
+                                and Stable Diffusion came to existence.
+                                
+                                In 2015, researchers from Stanford and Berkeley introduced diffusion models in their paper "Deep Unsupervised Learning
+                                using Nonequilibrium Thermodynamics." The idea was inspired by the same natural laws that govern how milk diffuses in
+                                your morning coffee.
+                                Full Article: https://lnkd.in/gQ9x9kZY
+                                
+                                The concept is simple:
+                                1. Start with an image.
+                                2. Gradually add random noise in each step until it’s unrecognizable—like TV static.
+                                3. Train a neural network that learns how to reverse this process, step by step.
+                                
+                                Once trained, the model generates new, realistic images from pure noise—like rewinding the diffusion of ink in water.
+                                More info: https://lnkd.in/gZAYrgMz
+                                
+                                This isn’t the only time physics has fueled AI. Earlier work by AI pioneers John Hopfield and Geoffrey Hinton, which
+                                earned them the 2024 Nobel Prize in "Physics", highlights how ideas flow both ways. AI has also provided powerful tools
+                                for physical scientists to push the boundaries of their fields.
+                                
+                                In fact, the cover image of this post was created using a diffusion-based model with the following prompt:
+                                “A droplet of ink diffused in water, the tail of the diffused ink has shaped a brain.”
+                                
+                                If you found this interesting, consider like, share, or comment below!
                             </p>
                             <span class="read-more" data-state="collapsed">Read More</span>
                         </div>
@@ -371,7 +385,6 @@
                 </div>
 
                 <div class="content-section" id="projects">
-                    <h2 class="section-heading">Projects</h2>
                     <div class="project">
                         <h3>Project One</h3>
                         <p>A simple web application that tracks tasks and deadlines to improve productivity.</p>
