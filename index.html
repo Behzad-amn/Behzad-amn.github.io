@@ -316,8 +316,37 @@
       /* Responsive */
       @media (max-width: 600px) {
         #about {
-          flex-direction: column;
-          gap: 20px;
+          flex-direction: column; /* Stack elements vertically */
+          gap: 20px; /* Add spacing between avatar and info */
+          text-align: center; /* Center-align text for better appearance */
+          padding: 10px; /* Add padding for better spacing on smaller screens */
+        }
+
+        .avatar {
+          width: 150px; /* Reduce avatar size */
+          height: 150px;
+        }
+
+        .about-info {
+          align-items: center; /* Center content */
+        }
+
+        .about-intro {
+          font-size: 1.8em; /* Adjust font size for small screens */
+        }
+
+        .about-tagline {
+          font-size: 1em; /* Adjust tagline font size */
+        }
+
+        .contact-links {
+          flex-direction: column; /* Stack contact links vertically */
+          gap: 10px; /* Reduce gap for smaller screens */
+        }
+
+        .contact-icon {
+          width: 30px; /* Resize icons */
+          height: 30px;
         }
 
         .blog-post {
