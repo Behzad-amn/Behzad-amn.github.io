@@ -340,8 +340,10 @@
         }
 
         .contact-links {
-          flex-direction: column; /* Stack contact links vertically */
-          gap: 10px; /* Reduce gap for smaller screens */
+          display: flex;
+          gap: 15px; /* Maintain some spacing between icons */
+          justify-content: center; /* Center icons horizontally */
+          flex-wrap: wrap; /* Allow wrapping if necessary */
         }
 
         .contact-icon {
