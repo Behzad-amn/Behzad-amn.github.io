@@ -6,18 +6,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    /* Base Styles */
-    body {
+    /* Base Reset and Box-Sizing */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
       margin: 0;
+      padding: 0;
+    }
+
+    body {
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       color: #555;
       font-size: 16px;
       line-height: 1.6;
       position: relative;
-      overflow: hidden;
+      overflow-x: hidden;
     }
 
-    /* Blurred Background with Custom Image */
+    /* Blurred Background */
     body::before {
       content: "";
       position: fixed;
@@ -51,41 +58,45 @@
       line-height: 1.3;
     }
 
-    /* Wrapper and Container */
+    /* Wrapper */
     .wrapper {
       display: flex;
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
       padding-top: 8%;
-      box-sizing: border-box;
+      padding-bottom: 40px;
       position: relative;
       z-index: 1;
     }
 
+    /* Fixed-Height Container */
     .container {
       background: rgba(255, 255, 255, 0.85);
       width: 90vw;
       max-width: 800px;
+
+      /* The key to prevent height changes between sections: */
       height: 60vh;
+      /* Occupies 60% of the viewport height */
       min-height: 500px;
-      box-shadow: 10 10 10px rgba(0, 0, 0, 0.05);
+      /* Ensures enough height on larger screens */
+
+      box-shadow: 0 10px 10px rgba(0, 0, 0, 0.05);
       display: flex;
       flex-direction: column;
-      position: relative;
       border-radius: 8px;
       overflow: hidden;
+      /* We only want scrolling inside `.content` */
     }
 
     .content {
       flex: 1;
+      /* Fill remaining space */
       overflow-y: auto;
       scroll-behavior: smooth;
-      margin: 0;
-      padding: 0;
     }
 
-    /* Scrollbar styling */
     .content::-webkit-scrollbar {
       width: 8px;
     }
@@ -102,7 +113,6 @@
     .content-section {
       display: none;
       width: 100%;
-      box-sizing: border-box;
       padding: 20px;
     }
 
@@ -151,7 +161,6 @@
       justify-content: center;
       flex-direction: row;
       gap: 40px;
-      height: 100%;
     }
 
     .avatar {
@@ -189,11 +198,22 @@
       line-height: 1.6;
     }
 
+    .resume-link {
+      margin-bottom: 0px;
+    }
+
+    .resume-link a {
+      display: inline-block;
+      margin-bottom: 20px;
+      font-size: 1.2em;
+    }
+
     .contact-links {
       display: flex;
       gap: 20px;
       align-items: center;
       margin-bottom: 20px;
+      flex-wrap: wrap;
     }
 
     .contact-links strong {
@@ -216,38 +236,16 @@
       filter: brightness(1.2);
     }
 
-    .resume-link {
-      margin-bottom: 0px;
-    }
-
-    .resume-link a {
-      display: inline-block;
-      margin-bottom: 20px;
-      font-size: 1.2em;
-    }
-
-    /* Section Headings */
-    .section-heading {
-      font-size: 1.8em;
-      margin-bottom: 20px;
-      color: #333;
-      font-weight: 600;
-    }
-
     /* Blog Section */
     #blog {
-      padding: 20px;
       flex-direction: column;
       align-items: center;
-      /* centers the iframes' container */
     }
 
-    /* Container for each embedded LinkedIn post */
     .blog-iframe {
       width: 600px;
       max-width: 100%;
       margin: 0 auto 30px;
-      /* center + bottom margin */
       background: #fafafa;
       border: 1px solid #ddd;
       border-radius: 8px;
@@ -271,7 +269,6 @@
 
     /* Projects Section */
     #projects {
-      padding: 20px;
       flex-direction: column;
     }
 
@@ -296,13 +293,18 @@
       color: #555;
     }
 
-    /* Responsive */
+    /* Media Query for Smaller Screens */
     @media (max-width: 600px) {
+      .container {
+        /* If you want a slightly different approach for small screens: */
+        height: 70vh;
+        min-height: 400px;
+      }
+
       #about {
         flex-direction: column;
         gap: 20px;
         text-align: center;
-        padding: 10px;
       }
 
       .avatar {
@@ -323,10 +325,8 @@
       }
 
       .contact-links {
-        display: flex;
         gap: 15px;
         justify-content: center;
-        flex-wrap: wrap;
       }
 
       .contact-icon {
@@ -341,7 +341,6 @@
 
       .blog-iframe iframe {
         height: 400px;
-        /* reduce height for smaller screens if needed */
       }
     }
   </style>
@@ -349,12 +348,14 @@
 
 <body>
   <div class="wrapper">
+    <!-- Navigation -->
     <div class="nav">
       <div class="nav-item active" data-target="about">Home</div>
       <div class="nav-item" data-target="blog">Blog</div>
       <div class="nav-item" data-target="projects">Projects</div>
     </div>
 
+    <!-- Fixed-Height Container -->
     <div class="container">
       <div class="content">
         <!-- ABOUT SECTION -->
@@ -371,7 +372,6 @@
             <div class="resume-link">
               <a href="files/CV.pdf" target="_blank">View Resume</a>
             </div>
-
             <div class="contact-links">
               <a href="https://www.linkedin.com/in/behzad-aminian/" target="_blank">
                 <img src="images/linkedin.png" alt="LinkedIn" class="contact-icon" />
@@ -388,18 +388,19 @@
 
         <!-- BLOG SECTION -->
         <div class="content-section" id="blog">
-          <!-- First Embedded LinkedIn Post -->
           <div class="blog-iframe">
-            <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7274949530482028544" allowfullscreen="">
+            <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7274949530482028544"
+              allowfullscreen="">
             </iframe>
           </div>
 
-          <!-- Second Embedded LinkedIn Post (Sample) -->
           <div class="blog-iframe">
-            <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7274949530482028544" allowfullscreen="">
+            <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7274949530482028544"
+              allowfullscreen="">
             </iframe>
           </div>
         </div>
+
         <!-- PROJECTS SECTION -->
         <div class="content-section" id="projects">
           <div class="project">
@@ -443,13 +444,11 @@
 
     navItems.forEach((item) => {
       item.addEventListener("click", () => {
-        // Remove 'active' from all nav items and content sections
+        // Remove 'active' from all nav items and all content sections
         navItems.forEach((i) => i.classList.remove("active"));
-        contentSections.forEach((section) =>
-          section.classList.remove("active")
-        );
+        contentSections.forEach((section) => section.classList.remove("active"));
 
-        // Add 'active' to the clicked nav item and the corresponding section
+        // Add 'active' to clicked nav item and target section
         item.classList.add("active");
         const target = item.getAttribute("data-target");
         const sectionToShow = document.getElementById(target);
