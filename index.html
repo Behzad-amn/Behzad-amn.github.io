@@ -1,581 +1,430 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Behzad Aminian</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style>
-      /* Base Styles */
-      body {
-        margin: 0;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        color: #555;
-        font-size: 16px;
-        line-height: 1.6;
-        position: relative;
-        overflow: hidden;
-      }
 
-      /* Blurred Background with Custom Image */
-      body::before {
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: url("images/background.jpg") center center/cover no-repeat;
-        filter: blur(15px);
-        z-index: -1;
-        transform: scale(1.1);
-      }
+<head>
+  <title>Behzad Aminian</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    /* Base Styles */
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: #555;
+      font-size: 16px;
+      line-height: 1.6;
+      position: relative;
+      overflow: hidden;
+    }
 
-      a {
-        color: #007acc;
-        text-decoration: none;
-      }
+    /* Blurred Background with Custom Image */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("images/background.jpg") center center/cover no-repeat;
+      filter: blur(15px);
+      z-index: -1;
+      transform: scale(1.1);
+    }
 
-      a:hover {
-        text-decoration: underline;
-      }
+    a {
+      color: #007acc;
+      text-decoration: none;
+    }
 
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        color: #333;
-        margin-top: 0;
-        line-height: 1.3;
-      }
+    a:hover {
+      text-decoration: underline;
+    }
 
-      /* Wrapper and Container */
-      .wrapper {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        min-height: 100vh;
-        padding-top: 8%;
-        box-sizing: border-box;
-        position: relative;
-        z-index: 1;
-      }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: #333;
+      margin-top: 0;
+      line-height: 1.3;
+    }
 
-      .container {
-        background: rgba(255, 255, 255, 0.85);
-        width: 90vw;
-        max-width: 800px;
-        height: 60vh;
-        min-height: 500px;
-        box-shadow: 10 10 10px rgba(0, 0, 0, 0.05);
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        border-radius: 8px;
-        overflow: hidden;
-      }
+    /* Wrapper and Container */
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding-top: 8%;
+      box-sizing: border-box;
+      position: relative;
+      z-index: 1;
+    }
 
-      .content {
-        flex: 1;
-        overflow-y: auto;
-        scroll-behavior: smooth;
-        margin: 0;
-        padding: 0;
-      }
+    .container {
+      background: rgba(255, 255, 255, 0.85);
+      width: 90vw;
+      max-width: 800px;
+      height: 60vh;
+      min-height: 500px;
+      box-shadow: 10 10 10px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+    }
 
-      /* Scrollbar styling */
-      .content::-webkit-scrollbar {
-        width: 8px;
-      }
+    .content {
+      flex: 1;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+      margin: 0;
+      padding: 0;
+    }
 
-      .content::-webkit-scrollbar-track {
-        background: #f0f0f0;
-      }
+    /* Scrollbar styling */
+    .content::-webkit-scrollbar {
+      width: 8px;
+    }
 
-      .content::-webkit-scrollbar-thumb {
-        background: #505050;
-        border-radius: 4px;
-      }
+    .content::-webkit-scrollbar-track {
+      background: #f0f0f0;
+    }
 
-      .content-section {
-        display: none;
-        width: 100%;
-        box-sizing: border-box;
-        padding: 20px;
-      }
+    .content::-webkit-scrollbar-thumb {
+      background: #505050;
+      border-radius: 4px;
+    }
 
-      .content-section.active {
-        display: flex;
-        flex-direction: column;
-      }
+    .content-section {
+      display: none;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 20px;
+    }
 
-      /* Navigation */
-      .nav {
-        display: flex;
-        gap: 20px;
-        background: rgba(255, 255, 255, 0.85);
-        padding: 10px 20px;
-        border-radius: 8px;
-        backdrop-filter: blur(10px);
-        margin-bottom: 8px;
-        flex-wrap: wrap;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      }
+    .content-section.active {
+      display: flex;
+      flex-direction: column;
+    }
 
-      .nav-item {
-        cursor: pointer;
-        font-size: 1em;
-        position: relative;
-        padding: 10px 0;
-        text-decoration: none;
-        color: #333;
-        font-weight: 500;
-        transition: color 0.3s ease-in-out;
-      }
+    /* Navigation */
+    .nav {
+      display: flex;
+      gap: 20px;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 10px 20px;
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
 
-      .nav-item:hover {
-        color: #007acc;
-      }
+    .nav-item {
+      cursor: pointer;
+      font-size: 1em;
+      position: relative;
+      padding: 10px 0;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s ease-in-out;
+    }
 
-      .nav-item.active {
-        font-weight: 600;
-        color: #007acc;
-        border-bottom: 2px solid #007acc;
-      }
+    .nav-item:hover {
+      color: #007acc;
+    }
 
-      /* About Section */
+    .nav-item.active {
+      font-weight: 600;
+      color: #007acc;
+      border-bottom: 2px solid #007acc;
+    }
+
+    /* About Section */
+    #about {
+      align-items: center;
+      justify-content: center;
+      flex-direction: row;
+      gap: 40px;
+      height: 100%;
+    }
+
+    .avatar {
+      width: 230px;
+      height: 230px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1px solid #6463638a;
+      flex-shrink: 0;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .about-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .about-intro {
+      font-size: 2.5em;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 0px;
+    }
+
+    .about-tagline {
+      font-size: 1.2em;
+      color: #555;
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .contact-links strong {
+      margin-right: 10px;
+      font-size: 1.2em;
+      color: #333;
+      font-weight: 600;
+    }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      transition: transform 0.2s ease, filter 0.2s ease;
+      cursor: pointer;
+    }
+
+    .contact-icon:hover {
+      transform: scale(1.1);
+      filter: brightness(1.2);
+    }
+
+    .resume-link {
+      margin-bottom: 0px;
+    }
+
+    .resume-link a {
+      display: inline-block;
+      margin-bottom: 20px;
+      font-size: 1.2em;
+    }
+
+    /* Section Headings */
+    .section-heading {
+      font-size: 1.8em;
+      margin-bottom: 20px;
+      color: #333;
+      font-weight: 600;
+    }
+
+    /* Blog Section */
+    #blog {
+      padding: 20px;
+      flex-direction: column;
+    }
+
+    /* Projects Section */
+    #projects {
+      padding: 20px;
+      flex-direction: column;
+    }
+
+    .project {
+      margin-bottom: 20px;
+    }
+
+    .project+.project {
+      border-top: 1px solid #555;
+      padding-top: 20px;
+      margin-top: 20px;
+    }
+
+    .project h3 {
+      margin: 0 0 10px 0;
+      font-size: 1.3em;
+      color: #333;
+    }
+
+    .project p {
+      margin: 0 0 10px 0;
+      color: #555;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
       #about {
-        /* Removed display:flex; so it won't always show */
-        align-items: center;
-        justify-content: center;
-        flex-direction: row;
-        gap: 40px;
-        height: 100%; /* Makes it take full height of the container */
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+        padding: 10px;
       }
 
       .avatar {
-        width: 230px;
-        height: 230px;
-        border-radius: 50%;
-        overflow: hidden;
-        border: 1px solid #6463638a;
-        flex-shrink: 0;
-      }
-
-      .avatar img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+        width: 150px;
+        height: 150px;
       }
 
       .about-info {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+        align-items: center;
       }
 
       .about-intro {
-        font-size: 2.5em;
-        font-weight: bold;
-        color: #333;
-        margin-bottom: 0px;
+        font-size: 1.8em;
       }
 
       .about-tagline {
-        font-size: 1.2em;
-        color: #555;
-        margin-bottom: 10px;
-        line-height: 1.6;
+        font-size: 1em;
       }
 
       .contact-links {
         display: flex;
-        gap: 20px; /* Space between icons */
-        align-items: center; /* Center icons vertically */
-        margin-bottom: 20px;
-      }
-
-      .contact-links strong {
-        margin-right: 10px; /* Space between label and icons */
-        font-size: 1.2em;
-        color: #333;
-        font-weight: 600;
+        gap: 15px;
+        justify-content: center;
+        flex-wrap: wrap;
       }
 
       .contact-icon {
-        width: 40px; /* Adjust icon size */
-        height: 40px;
-        object-fit: contain; /* Ensure the icon fits properly */
-        transition: transform 0.2s ease, filter 0.2s ease;
-        cursor: pointer;
+        width: 30px;
+        height: 30px;
       }
+    }
+  </style>
+</head>
 
-      .contact-icon:hover {
-        transform: scale(1.1); /* Slightly enlarge on hover */
-        filter: brightness(1.2); /* Brighten on hover */
-      }
+<body>
+  <div class="wrapper">
+    <div class="nav">
+      <div class="nav-item active" data-target="about">Home</div>
+      <div class="nav-item" data-target="blog">Blog</div>
+      <div class="nav-item" data-target="projects">Projects</div>
+    </div>
 
-      .resume-link {
-        margin-bottom: 0px; /* Adds margin below the entire section */
-      }
-
-      .resume-link a {
-        display: inline-block; /* Ensures the link respects margins */
-        margin-bottom: 20px; /* Adds specific margin below the link */
-        font-size: 1.2em; /* Optional: Adjust font size for emphasis */
-      }
-
-      /* Section Headings */
-      .section-heading {
-        font-size: 1.8em;
-        margin-bottom: 20px;
-        color: #333;
-        font-weight: 600;
-      }
-
-      /* Blog Section */
-      #blog {
-        padding: 20px;
-        flex-direction: column;
-      }
-
-      .blog-post {
-        display: flex;
-        align-items: flex-start;
-        margin-bottom: 20px;
-      }
-
-      .blog-post + .blog-post {
-        border-top: 1px solid #555;
-        padding-top: 20px;
-        margin-top: 20px;
-      }
-
-      .blog-post img {
-        width: 250px;
-        height: auto;
-        margin-right: 20px;
-        border-radius: 2px;
-        object-fit: cover;
-        flex-shrink: 0;
-      }
-
-      .blog-post-content h3 {
-        margin: 0 0 5px 0;
-        font-size: 1.3em;
-        color: #333;
-      }
-
-      .blog-date {
-        font-size: 0.9em;
-        color: #777;
-        margin-bottom: 10px;
-      }
-
-      .blog-text {
-        color: #555;
-      }
-
-      .read-more {
-        color: #007acc;
-        cursor: pointer;
-        font-size: 0.9em;
-        text-decoration: underline;
-        display: inline-block;
-        margin-top: 5px;
-      }
-
-      /* Projects Section */
-      #projects {
-        padding: 20px;
-        flex-direction: column;
-      }
-
-      .project {
-        margin-bottom: 20px;
-      }
-
-      .project + .project {
-        border-top: 1px solid #555;
-        padding-top: 20px;
-        margin-top: 20px;
-      }
-
-      .project h3 {
-        margin: 0 0 10px 0;
-        font-size: 1.3em;
-        color: #333;
-      }
-
-      .project p {
-        margin: 0 0 10px 0;
-        color: #555;
-      }
-
-      /* Responsive */
-      @media (max-width: 600px) {
-        #about {
-          flex-direction: column; /* Stack elements vertically */
-          gap: 20px; /* Add spacing between avatar and info */
-          text-align: center; /* Center-align text for better appearance */
-          padding: 10px; /* Add padding for better spacing on smaller screens */
-        }
-
-        .avatar {
-          width: 150px; /* Reduce avatar size */
-          height: 150px;
-        }
-
-        .about-info {
-          align-items: center; /* Center content */
-        }
-
-        .about-intro {
-          font-size: 1.8em; /* Adjust font size for small screens */
-        }
-
-        .about-tagline {
-          font-size: 1em; /* Adjust tagline font size */
-        }
-
-        .contact-links {
-          display: flex;
-          gap: 15px; /* Maintain some spacing between icons */
-          justify-content: center; /* Center icons horizontally */
-          flex-wrap: wrap; /* Allow wrapping if necessary */
-        }
-
-        .contact-icon {
-          width: 30px; /* Resize icons */
-          height: 30px;
-        }
-
-        .blog-post {
-          flex-direction: column;
-        }
-
-        .blog-post img {
-          margin-bottom: 10px;
-          margin-right: 0;
-          width: 100%;
-          max-width: 100%;
-        }
-      }
-    </style>
-  </head>
-
-  <body>
-    <div class="wrapper">
-      <div class="nav">
-        <div class="nav-item active" data-target="about">Home</div>
-        <div class="nav-item" data-target="blog">Blog</div>
-        <div class="nav-item" data-target="projects">Projects</div>
-      </div>
-      <div class="container">
-        <div class="content">
-          <div class="content-section active" id="about">
-            <div class="avatar">
-              <img src="images/me.png" alt="Avatar" />
+    <div class="container">
+      <div class="content">
+        <!-- ABOUT SECTION -->
+        <div class="content-section active" id="about">
+          <div class="avatar">
+            <img src="images/me.png" alt="Avatar" />
+          </div>
+          <div class="about-info">
+            <div class="about-intro">Behzad Aminian</div>
+            <div class="about-tagline">
+              Machine Learning Engineer and MLOps<br />
+              I make things work sometimes.
             </div>
-            <div class="about-info">
-              <div class="about-intro">Behzad Aminian</div>
-              <div class="about-tagline">
-                Machine Learning Engineer and MLOps<br />
-                I make things work sometimes.
-              </div>
-              <div class="resume-link">
-                <a href="files/CV.pdf" target="_blank">View Resume</a>
-              </div>
+            <div class="resume-link">
+              <a href="files/CV.pdf" target="_blank">View Resume</a>
+            </div>
 
-              <div class="contact-links">
-                <a
-                  href="https://www.linkedin.com/in/behzad-aminian/"
-                  target="_blank"
-                >
-                  <img
-                    src="images/linkedin.png"
-                    alt="LinkedIn"
-                    class="contact-icon"
-                  />
-                </a>
-                <a href="https://github.com/Behzad-amn" target="_blank">
-                  <img
-                    src="images/github.png"
-                    alt="GitHub"
-                    class="contact-icon"
-                  />
-                </a>
-                <a href="mailto:aminian.bz@gmail.com" target="_blank">
-                  <img
-                    src="images/email.png"
-                    alt="Email"
-                    class="contact-icon"
-                  />
-                </a>
-              </div>
+            <div class="contact-links">
+              <a href="https://www.linkedin.com/in/behzad-aminian/" target="_blank">
+                <img src="images/linkedin.png" alt="LinkedIn" class="contact-icon" />
+              </a>
+              <a href="https://github.com/Behzad-amn" target="_blank">
+                <img src="images/github.png" alt="GitHub" class="contact-icon" />
+              </a>
+              <a href="mailto:aminian.bz@gmail.com" target="_blank">
+                <img src="images/email.png" alt="Email" class="contact-icon" />
+              </a>
             </div>
           </div>
+        </div>
 
-          <div class="content-section" id="blog">
-            <div class="blog-post">
-              <img src="images/diifmodel.jpg" alt="Blog Post Cover 1" />
-              <div class="blog-post-content">
-                <h3>The Physics Behind Advanced Generative AI</h3>
-                <div class="blog-date">Posted on: 2023-01-15</div>
-                <p class="blog-text">
-                  Last week, OpenAI released Sora. It’s still evolving, but it
-                  inspired me to share how models like DALL·E, Midjourney, and
-                  Stable Diffusion came to existence. In 2015, researchers from
-                  Stanford and Berkeley introduced diffusion models in their
-                  paper "Deep Unsupervised Learning using Nonequilibrium
-                  Thermodynamics." The idea was inspired by the same natural
-                  laws that govern how milk diffuses in your morning coffee.
-                  Full Article: https://lnkd.in/gQ9x9kZY The concept is simple:
-                  1. Start with an image. 2. Gradually add random noise in each
-                  step until it’s unrecognizable—like TV static. 3. Train a
-                  neural network that learns how to reverse this process, step
-                  by step. Once trained, the model generates new, realistic
-                  images from pure noise—like rewinding the diffusion of ink in
-                  water. More info: https://lnkd.in/gZAYrgMz This isn’t the only
-                  time physics has fueled AI. Earlier work by AI pioneers John
-                  Hopfield and Geoffrey Hinton, which earned them the 2024 Nobel
-                  Prize in "Physics", highlights how ideas flow both ways. AI
-                  has also provided powerful tools for physical scientists to
-                  push the boundaries of their fields. In fact, the cover image
-                  of this post was created using a diffusion-based model with
-                  the following prompt: “A droplet of ink diffused in water, the
-                  tail of the diffused ink has shaped a brain.”
-                </p>
-                <span class="read-more" data-state="collapsed">Read More</span>
-              </div>
-            </div>
+        <!-- BLOG SECTION (REPLACED) -->
+        <div class="content-section" id="blog">
+          <h2 class="section-heading">LinkedIn Posts</h2>
 
-            <div class="blog-post">
-              <img src="images/pic02.jpg" alt="Blog Post Cover 2" />
-              <div class="blog-post-content">
-                <h3>Second Post Title</h3>
-                <div class="blog-date">Posted on: 2023-02-10</div>
-                <p class="blog-text">
-                  Another interesting blog post content here. Lorem ipsum dolor
-                  sit amet, consectetur adipiscing elit. Donec hendrerit nunc a
-                  lorem blandit, non tempor lacus accumsan. Pellentesque in diam
-                  nisl. Sed pharetra, sem eu finibus efficitur, nibh nisi
-                  volutpat elit, vel fringilla lorem ante a elit. Pellentesque
-                  habitant morbi tristique senectus et netus et malesuada fames
-                  ac turpis egestas...
-                </p>
-                <span class="read-more" data-state="collapsed">Read More</span>
-              </div>
-            </div>
+          <!-- Example of embedded LinkedIn post -->
+          <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7274949530482028544" height="600"
+            width="100%" frameborder="0" allowfullscreen="" title="Embedded LinkedIn Post"></iframe>
 
-            <div class="blog-post">
-              <img src="images/pic03.jpg" alt="Blog Post Cover 3" />
-              <div class="blog-post-content">
-                <h3>Third Post Title</h3>
-                <div class="blog-date">Posted on: 2023-03-20</div>
-                <p class="blog-text">
-                  Yet another fascinating article. Lorem ipsum dolor sit amet,
-                  consectetur adipiscing elit. Aliquam erat volutpat. Vestibulum
-                  eget laoreet eros, a rutrum mi. Aenean aliquet ex ut sapien
-                  ullamcorper, at ullamcorper lacus interdum. Nulla sodales quam
-                  elit, aliquam vehicula massa condimentum a. Integer convallis
-                  commodo nisl at ornare. Fusce ac dapibus ligula, non dignissim
-                  neque...
-                </p>
-                <span class="read-more" data-state="collapsed">Read More</span>
-              </div>
-            </div>
+          <!-- Add more iframes for additional LinkedIn posts -->
+          <!--
+            <iframe
+              src="YOUR_SECOND_LINKEDIN_POST_EMBED_URL"
+              height="600"
+              width="100%"
+              frameborder="0"
+              allowfullscreen=""
+              title="Another LinkedIn Post"
+            ></iframe>
+            -->
+        </div>
+
+        <!-- PROJECTS SECTION -->
+        <div class="content-section" id="projects">
+          <div class="project">
+            <h3>Project One</h3>
+            <p>
+              A simple web application that tracks tasks and deadlines to
+              improve productivity.
+            </p>
+            <a href="#" target="_blank">View Project</a>
           </div>
-
-          <div class="content-section" id="projects">
-            <div class="project">
-              <h3>Project One</h3>
-              <p>
-                A simple web application that tracks tasks and deadlines to
-                improve productivity.
-              </p>
-              <a href="#" target="_blank">View Project</a>
-            </div>
-            <div class="project">
-              <h3>Project Two</h3>
-              <p>
-                A mobile-responsive website that showcases a portfolio of
-                artworks.
-              </p>
-              <a href="#" target="_blank">View Project</a>
-            </div>
-            <div class="project">
-              <h3>Project Three</h3>
-              <p>
-                An interactive data visualization tool built with D3.js and
-                React.
-              </p>
-              <a href="#" target="_blank">View Project</a>
-            </div>
-            <div class="project">
-              <h3>Project Four</h3>
-              <p>A Node.js REST API backend for a social media application.</p>
-              <a href="#" target="_blank">View Project</a>
-            </div>
+          <div class="project">
+            <h3>Project Two</h3>
+            <p>
+              A mobile-responsive website that showcases a portfolio of
+              artworks.
+            </p>
+            <a href="#" target="_blank">View Project</a>
+          </div>
+          <div class="project">
+            <h3>Project Three</h3>
+            <p>
+              An interactive data visualization tool built with D3.js and
+              React.
+            </p>
+            <a href="#" target="_blank">View Project</a>
+          </div>
+          <div class="project">
+            <h3>Project Four</h3>
+            <p>A Node.js REST API backend for a social media application.</p>
+            <a href="#" target="_blank">View Project</a>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <script>
-      const navItems = document.querySelectorAll(".nav-item");
-      const contentSections = document.querySelectorAll(".content-section");
+  <script>
+    // Navigation handling
+    const navItems = document.querySelectorAll(".nav-item");
+    const contentSections = document.querySelectorAll(".content-section");
 
-      navItems.forEach((item) => {
-        item.addEventListener("click", () => {
-          navItems.forEach((i) => i.classList.remove("active"));
-          contentSections.forEach((section) =>
-            section.classList.remove("active")
-          );
+    navItems.forEach((item) => {
+      item.addEventListener("click", () => {
+        // Remove 'active' from all nav items and content sections
+        navItems.forEach((i) => i.classList.remove("active"));
+        contentSections.forEach((section) =>
+          section.classList.remove("active")
+        );
 
-          item.classList.add("active");
-          const target = item.getAttribute("data-target");
-          const sectionToShow = document.getElementById(target);
-          sectionToShow.classList.add("active");
-        });
+        // Add 'active' to the clicked nav item and the corresponding section
+        item.classList.add("active");
+        const target = item.getAttribute("data-target");
+        const sectionToShow = document.getElementById(target);
+        sectionToShow.classList.add("active");
       });
+    });
+  </script>
+</body>
 
-      // READ MORE / READ LESS FUNCTIONALITY
-      const MAX_LENGTH = 200; // max length for snippet
-      const blogTexts = document.querySelectorAll(".blog-text");
-      blogTexts.forEach((textElem) => {
-        const fullText = textElem.innerText.trim();
-        if (fullText.length > MAX_LENGTH) {
-          const snippet = fullText.slice(0, MAX_LENGTH) + "...";
-          textElem.setAttribute("data-fulltext", fullText);
-          textElem.innerText = snippet;
-        } else {
-          const readMoreLink =
-            textElem.parentElement.querySelector(".read-more");
-          if (readMoreLink) readMoreLink.style.display = "none";
-        }
-      });
-
-      const readMoreLinks = document.querySelectorAll(".read-more");
-      readMoreLinks.forEach((link) => {
-        link.addEventListener("click", () => {
-          const textElem = link.parentElement.querySelector(".blog-text");
-          const fullText = textElem.getAttribute("data-fulltext");
-          const state = link.getAttribute("data-state");
-
-          if (state === "collapsed") {
-            textElem.innerText = fullText;
-            link.innerText = "Read Less";
-            link.setAttribute("data-state", "expanded");
-          } else {
-            const snippet = fullText.slice(0, MAX_LENGTH) + "...";
-            textElem.innerText = snippet;
-            link.innerText = "Read More";
-            link.setAttribute("data-state", "collapsed");
-          }
-        });
-      });
-    </script>
-  </body>
 </html>
