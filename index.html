@@ -238,6 +238,35 @@
     #blog {
       padding: 20px;
       flex-direction: column;
+      align-items: center;
+      /* centers the iframes' container */
+    }
+
+    /* Container for each embedded LinkedIn post */
+    .blog-iframe {
+      width: 600px;
+      max-width: 100%;
+      margin: 0 auto 30px;
+      /* center + bottom margin */
+      background: #fafafa;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .blog-iframe h3 {
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #333;
+      font-size: 1.2em;
+    }
+
+    .blog-iframe iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
     }
 
     /* Projects Section */
@@ -304,6 +333,16 @@
         width: 30px;
         height: 30px;
       }
+
+      .blog-iframe {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+      .blog-iframe iframe {
+        height: 400px;
+        /* reduce height for smaller screens if needed */
+      }
     }
   </style>
 </head>
@@ -347,25 +386,23 @@
           </div>
         </div>
 
-        <!-- BLOG SECTION (REPLACED) -->
+        <!-- BLOG SECTION -->
         <div class="content-section" id="blog">
-          <h2 class="section-heading">LinkedIn Posts</h2>
+          <h2 class="section-heading">Featured LinkedIn Posts</h2>
 
-          <!-- Example of embedded LinkedIn post -->
-          <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7274949530482028544" height="600"
-            width="100%" frameborder="0" allowfullscreen="" title="Embedded LinkedIn Post"></iframe>
+          <!-- First Embedded LinkedIn Post -->
+          <div class="blog-iframe">
+            <h3>Post #1: Sharing AI Insights</h3>
+            <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7274949530482028544" allowfullscreen=""
+              title="Embedded LinkedIn Post #1"></iframe>
+          </div>
 
-          <!-- Add more iframes for additional LinkedIn posts -->
-          <!--
-            <iframe
-              src="YOUR_SECOND_LINKEDIN_POST_EMBED_URL"
-              height="600"
-              width="100%"
-              frameborder="0"
-              allowfullscreen=""
-              title="Another LinkedIn Post"
-            ></iframe>
-            -->
+          <!-- Second Embedded LinkedIn Post (Sample) -->
+          <div class="blog-iframe">
+            <h3>Post #2: Another AI Update</h3>
+            <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7274949530482028555" allowfullscreen=""
+              title="Embedded LinkedIn Post #2"></iframe>
+          </div>
         </div>
 
         <!-- PROJECTS SECTION -->
