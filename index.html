@@ -76,23 +76,21 @@
       width: 90vw;
       max-width: 800px;
 
-      /* The key to prevent height changes between sections: */
+      /* Keep a consistent height so it won't resize */
       height: 60vh;
-      /* Occupies 60% of the viewport height */
       min-height: 500px;
-      /* Ensures enough height on larger screens */
 
       box-shadow: 0 10px 10px rgba(0, 0, 0, 0.05);
       display: flex;
       flex-direction: column;
       border-radius: 8px;
       overflow: hidden;
-      /* We only want scrolling inside `.content` */
+      /* We'll scroll inside .content */
     }
 
+    /* Scrollable Content Area */
     .content {
       flex: 1;
-      /* Fill remaining space */
       overflow-y: auto;
       scroll-behavior: smooth;
     }
@@ -110,15 +108,17 @@
       border-radius: 4px;
     }
 
+    /* Hide all sections by default; show only the active one */
     .content-section {
       display: none;
       width: 100%;
-      padding: 20px;
+      box-sizing: border-box;
     }
 
     .content-section.active {
-      display: flex;
-      flex-direction: column;
+      display: block;
+      /* or flex—handled on a per-section basis below */
+      padding: 20px;
     }
 
     /* Navigation */
@@ -155,11 +155,13 @@
       border-bottom: 2px solid #007acc;
     }
 
-    /* About Section */
-    #about {
+    /* About Section - CENTER THIS VERTICALLY AND HORIZONTALLY */
+    #about.active {
+      /* Make the About section take up full height */
+      display: flex;
       align-items: center;
       justify-content: center;
-      flex-direction: row;
+      height: 100%;
       gap: 40px;
     }
 
@@ -198,10 +200,6 @@
       line-height: 1.6;
     }
 
-    .resume-link {
-      margin-bottom: 0px;
-    }
-
     .resume-link a {
       display: inline-block;
       margin-bottom: 20px;
@@ -214,13 +212,6 @@
       align-items: center;
       margin-bottom: 20px;
       flex-wrap: wrap;
-    }
-
-    .contact-links strong {
-      margin-right: 10px;
-      font-size: 1.2em;
-      color: #333;
-      font-weight: 600;
     }
 
     .contact-icon {
@@ -237,9 +228,9 @@
     }
 
     /* Blog Section */
-    #blog {
-      flex-direction: column;
-      align-items: center;
+    #blog.active {
+      display: block;
+      padding: 20px;
     }
 
     .blog-iframe {
@@ -268,8 +259,9 @@
     }
 
     /* Projects Section */
-    #projects {
-      flex-direction: column;
+    #projects.active {
+      display: block;
+      padding: 20px;
     }
 
     .project {
@@ -296,24 +288,19 @@
     /* Media Query for Smaller Screens */
     @media (max-width: 600px) {
       .container {
-        /* If you want a slightly different approach for small screens: */
         height: 70vh;
         min-height: 400px;
       }
 
-      #about {
+      #about.active {
         flex-direction: column;
-        gap: 20px;
         text-align: center;
+        gap: 20px;
       }
 
       .avatar {
         width: 150px;
         height: 150px;
-      }
-
-      .about-info {
-        align-items: center;
       }
 
       .about-intro {
@@ -332,11 +319,6 @@
       .contact-icon {
         width: 30px;
         height: 30px;
-      }
-
-      .blog-iframe {
-        width: 100%;
-        margin-bottom: 20px;
       }
 
       .blog-iframe iframe {
@@ -442,11 +424,11 @@
     const navItems = document.querySelectorAll(".nav-item");
     const contentSections = document.querySelectorAll(".content-section");
 
-    navItems.forEach((item) => {
+    navItems.forEach(item => {
       item.addEventListener("click", () => {
-        // Remove 'active' from all nav items and all content sections
-        navItems.forEach((i) => i.classList.remove("active"));
-        contentSections.forEach((section) => section.classList.remove("active"));
+        // Remove 'active' from all nav items and content sections
+        navItems.forEach(i => i.classList.remove("active"));
+        contentSections.forEach(section => section.classList.remove("active"));
 
         // Add 'active' to clicked nav item and target section
         item.classList.add("active");
